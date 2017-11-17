@@ -72,6 +72,8 @@ namespace Microsoft.AspNetCore.Http
         /// </summary>
         public virtual TimeSpan? MaxAge { get; set; }
 
+        public virtual bool IsEssential { get; set; }
+
         /// <summary>
         /// Creates the cookie options from the given <paramref name="context"/>.
         /// </summary>
@@ -99,6 +101,7 @@ namespace Microsoft.AspNetCore.Http
                 HttpOnly = HttpOnly,
                 MaxAge = MaxAge,
                 Domain = Domain,
+                IsEssential = IsEssential,
                 Secure = SecurePolicy == CookieSecurePolicy.Always || (SecurePolicy == CookieSecurePolicy.SameAsRequest && context.Request.IsHttps),
                 Expires = Expiration.HasValue ? expiresFrom.Add(Expiration.Value) : default(DateTimeOffset?)
             };
